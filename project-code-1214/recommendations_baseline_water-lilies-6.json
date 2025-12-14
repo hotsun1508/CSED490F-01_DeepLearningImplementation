@@ -1,0 +1,8 @@
+{
+  "id": "water-lilies-6",
+  "mode": "baseline",
+  "latency": 5.0479700565338135,
+  "estimated_tokens": 218,
+  "throughput": "43.33 tok/s",
+  "response": "- The first recommendation of the top three is **Claude Monet_The Dinner, 1869**, (https://upload.wikimedia.org/wikipedia/commons/a/a9/Claude_Monet_-_The_Dinner_-_Google_Art_Project.jpg) which is a painting by Claude Monet. The painting was painted in 1869, and it is considered one of Monet’s best works. It is a painting of a dinner party that Monet attended. The painting is well-known for its use of light and color. The painting is also well-known for its use of impressionism, which is a style of painting that attempts to capture the essence of a scene.\n\n- The second recommendation is **Pierre-Auguste Renoir_ Nini in the Garden**, (https://upload.wikimedia.org/wikipedia/commons/e/e9/Pierre-Auguste_Renoir_-_Nini_in_the_Garden.jpg) which is a painting by Pierre-Auguste Renoir. Renoir was a French artist who was known for his paintings of people and landscapes. The"
+}
