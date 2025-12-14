@@ -1,0 +1,2 @@
+[20251214_235658] Mode: baseline | ID: water-lilies-6 | Latency: 5.4982s | Throughput: 39.42 tok/s
+[20251214_235726] Mode: baseline | ID: water-lilies-6 | Latency: 5.0480s | Throughput: 43.33 tok/s

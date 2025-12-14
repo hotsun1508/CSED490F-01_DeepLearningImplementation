@@ -1,0 +1,130 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://www.gennarovessio.com/artgraph-schema#Field> a owl:Class;
+  rdfs:label "Field" .
+
+<https://www.gennarovessio.com/artgraph-schema#inCountry> a owl:ObjectProperty;
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Country>;
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#City>, <https://www.gennarovessio.com/artgraph-schema#Gallery>;
+  rdfs:label "inCountry" .
+
+<https://www.gennarovessio.com/artgraph-schema#inCity> a owl:ObjectProperty;
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#City>;
+  rdfs:label "inCity";
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Gallery> .
+
+<https://www.gennarovessio.com/artgraph-schema#belongToMovement> a owl:ObjectProperty;
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artist>;
+  rdfs:label "belongToMovement";
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Movement> .
+
+<https://www.gennarovessio.com/artgraph-schema#Genre> a owl:Class;
+  rdfs:label "Genre" .
+
+<https://www.gennarovessio.com/artgraph-schema#partOf> a owl:ObjectProperty;
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artwork>;
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Serie>;
+  rdfs:label "partOf" .
+
+<https://www.gennarovessio.com/artgraph-schema#createdBy> a owl:ObjectProperty;
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Artist>;
+  rdfs:label "createdBy";
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artwork> .
+
+<https://www.gennarovessio.com/artgraph-schema#hasGenre> a owl:ObjectProperty;
+  rdfs:label "hasGenre";
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artwork>;
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Genre> .
+
+<https://www.gennarovessio.com/artgraph-schema#hasPatron> a owl:ObjectProperty;
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#People>;
+  rdfs:label "hasPatron";
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artist> .
+
+<https://www.gennarovessio.com/artgraph-schema#hasStyle> a owl:ObjectProperty;
+  rdfs:label "hasStyle";
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Style>;
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artwork> .
+
+<https://www.gennarovessio.com/artgraph-schema#People> a owl:Class;
+  rdfs:label "People" .
+
+<https://www.gennarovessio.com/artgraph-schema#about> a owl:ObjectProperty;
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Tag>;
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artwork>;
+  rdfs:label "about" .
+
+<https://www.gennarovessio.com/artgraph-schema#locatedIn> a owl:ObjectProperty;
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artwork>;
+  rdfs:label "locatedIn";
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Country>, <https://www.gennarovessio.com/artgraph-schema#Gallery>, <https://www.gennarovessio.com/artgraph-schema#City> .
+
+<https://www.gennarovessio.com/artgraph-schema#Tag> a owl:Class;
+  rdfs:label "Tag" .
+
+<https://www.gennarovessio.com/artgraph-schema#Artwork> a owl:Class;
+  rdfs:label "Artwork" .
+
+<https://www.gennarovessio.com/artgraph-schema#Serie> a owl:Class;
+  rdfs:label "Serie" .
+
+<https://www.gennarovessio.com/artgraph-schema#trainedBy> a owl:ObjectProperty;
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Artist>;
+  rdfs:label "trainedBy";
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artist> .
+
+<https://www.gennarovessio.com/artgraph-schema#Artist> a owl:Class;
+  rdfs:label "Artist" .
+
+<https://www.gennarovessio.com/artgraph-schema#hasSubject> a owl:ObjectProperty;
+  rdfs:label "hasSubject";
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artist>;
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Subject> .
+
+<https://www.gennarovessio.com/artgraph-schema#relatedToSchool> a owl:ObjectProperty;
+  rdfs:label "relatedToSchool";
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Training>;
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artist> .
+
+<https://www.gennarovessio.com/artgraph-schema#madeFrom> a owl:ObjectProperty;
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Media>;
+  rdfs:label "madeFrom";
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artwork> .
+
+<https://www.gennarovessio.com/artgraph-schema#Training> a owl:Class;
+  rdfs:label "Training" .
+
+<https://www.gennarovessio.com/artgraph-schema#Period> a owl:Class;
+  rdfs:label "Period" .
+
+<https://www.gennarovessio.com/artgraph-schema#hasPeriod> a owl:ObjectProperty;
+  rdfs:label "hasPeriod";
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Period>;
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artwork> .
+
+<https://www.gennarovessio.com/artgraph-schema#belongToField> a owl:ObjectProperty;
+  rdfs:range <https://www.gennarovessio.com/artgraph-schema#Field>;
+  rdfs:label "belongToField";
+  rdfs:domain <https://www.gennarovessio.com/artgraph-schema#Artist> .
+
+<https://www.gennarovessio.com/artgraph-schema#Style> a owl:Class;
+  rdfs:label "Style" .
+
+<https://www.gennarovessio.com/artgraph-schema#Gallery> a owl:Class;
+  rdfs:label "Gallery" .
+
+<https://www.gennarovessio.com/artgraph-schema#City> a owl:Class;
+  rdfs:label "City" .
+
+<https://www.gennarovessio.com/artgraph-schema#Media> a owl:Class;
+  rdfs:label "Media" .
+
+<https://www.gennarovessio.com/artgraph-schema#Country> a owl:Class;
+  rdfs:label "Country" .
+
+<https://www.gennarovessio.com/artgraph-schema#Movement> a owl:Class;
+  rdfs:label "Movement" .
+
+<https://www.gennarovessio.com/artgraph-schema#Subject> a owl:Class;
+  rdfs:label "Subject" .

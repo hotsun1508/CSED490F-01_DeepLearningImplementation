@@ -1,0 +1,68 @@
+import os
+import uvicorn
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from vllm import AsyncLLMEngine, SamplingParams, AsyncEngineArgs
+from vllm.lora.request import LoRARequest
+
+MODEL_NAME = "NousResearch/Llama-2-7b-hf"
+ADAPTER_DIR = "./adapters" 
+
+app = FastAPI()
+
+# ======================================================
+# 🔴 [BASELINE MODE] 최적화 기술 비활성화 (OFF)
+# ======================================================
+print(">>> [BASELINE MODE] Initializing vLLM Engine (No Optimization)...")
+
+engine_args = AsyncEngineArgs(
+    model=MODEL_NAME,
+    dtype="auto",
+    gpu_memory_utilization=0.9,
+    enable_chunked_prefill=False,   # ❌ 최적화 끔
+    enable_lora=True, 
+    max_loras=1,                    # ❌ LoRA 제한
+    max_lora_rank=16,
+    disable_log_stats=True
+)
+engine = AsyncLLMEngine.from_engine_args(engine_args)
+
+class ChatRequest(BaseModel):
+    prompt: str
+    adapter_type: str = "chat_bot"
+    max_tokens: int = 128
+
+@app.post("/generate")
+async def generate_response(request: ChatRequest):
+    try:
+        adapter_path = os.path.join(ADAPTER_DIR, request.adapter_type)
+        if not os.path.exists(adapter_path):
+            raise HTTPException(status_code=400, detail=f"Adapter not found.")
+
+        lora_id = 1 if request.adapter_type == "art_curator" else 2
+        lora_req = LoRARequest(request.adapter_type, lora_id, adapter_path)
+        
+        sampling_params = SamplingParams(temperature=0.7, max_tokens=request.max_tokens)
+        request_id = f"req-{os.urandom(4).hex()}"
+        
+        results_generator = engine.generate(
+            request.prompt, 
+            sampling_params, 
+            request_id=request_id, 
+            lora_request=lora_req
+        )
+
+        final_output = ""
+        async for request_output in results_generator:
+            final_output = request_output.outputs[0].text
+
+        return {"status": "success", "response": final_output}
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return {"status": "error", "detail": str(e)}
+
+if __name__ == "__main__":
+    # [수정 완료] 이제 Baseline도 8080번 포트를 씁니다!
+    print(">>> Starting BASELINE Server on Port 8080...")
+    uvicorn.run(app, host="0.0.0.0", port=8080)
